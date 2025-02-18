@@ -24,7 +24,7 @@ if "chat_history_bat_v2" not in st.session_state:
 
 if st.session_state["bat_data"] is None:
     with st.spinner("Loading pdf data...."):
-        text = load_string_from_textfile(filepath = "bat_pdf_text.txt")
+        text = load_string_from_textfile(filepath = "data/bat_pdf_text.txt")
         st.session_state["bat_data"] = text
 
 
