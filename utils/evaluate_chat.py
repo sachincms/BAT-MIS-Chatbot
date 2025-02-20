@@ -8,7 +8,7 @@ import os
 import sys
 import llama_index
 import nest_asyncio
-from constants import *
+from config import *
 from dotenv import load_dotenv
 
 load_dotenv()
