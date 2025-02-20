@@ -8,7 +8,7 @@ from utils.vector_embeddings import *
 from utils.image_processing import *
 
 
-st.title("Chatbot-for BAT")
+st.title("Chatbot for KAWACH")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -19,10 +19,14 @@ with col2:
     st.image(img2, use_container_width = True)
 
 st.markdown('''
-            This is the home page.\n
-            There are two pages with two versions for - BAT\n
-            **Page 1:** BAT using OpenAI Embeddings & LLM.\n
-            **Page 2:** BAT using Gemini & basic prompt template framework.
+            India has over 172 million children at risk of harm, despite strong child protection laws. To tackle this, COF-KAWACH—a 10-year initiative by the British Asian Trust (BAT) and its partners—was launched in June 2022. The program works across Bihar, Uttar Pradesh, West Bengal, and Rajasthan, strengthening systems from grassroots to state levels to prevent child exploitation. By collaborating with local NGOs and government bodies, KAWACH aligns with India’s Mission Vatsalya to create safer childhoods.
+
+            Ask anything about KAWACH:
+            - What are the key findings on child trafficking?
+            - How does KAWACH support child protection laws?
+            - Which organisations are implementing the program?
+
+            **Powered by real data & reports. Available anytime.**
 ''')
 
    
