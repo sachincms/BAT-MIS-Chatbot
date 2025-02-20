@@ -10,11 +10,12 @@ import os
 import sys
 import llama_index
 import nest_asyncio
-from constants import *
+from config import *
 from utils.evaluate_chat import *
 import re
 from typing import Tuple
 from dotenv import load_dotenv
+import time
 
 
 load_dotenv()
@@ -174,3 +175,8 @@ def qa_chat2(text: str, query: str) -> dict:
     d["source"] = None
 
   return d
+
+def stream_data(response):
+    for word in response.split(" "):
+        yield word + " "
+        time.sleep(0.02)
