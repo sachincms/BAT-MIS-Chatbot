@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # EMBEDDING_MODEL = "text-embedding-3-small"
 # MODEL_NAME = "gpt-3.5-turbo"
@@ -12,6 +15,21 @@ LOGO_STYLE_HTML = os.path.join(current_file_path, "static",  "html", "logo_style
 
 BAT_LOGO_PATH = os.path.join(current_file_path, "static",  "images", "BAT.png")
 CMS_LOGO_PATH = os.path.join(current_file_path, "static",  "images", "CMS.png")
+
+
+GOOGLE_API_KEY_1 = os.getenv("GOOGLE_API_KEY_1")
+GOOGLE_API_KEY_2 = os.getenv("GOOGLE_API_KEY_2")
+GOOGLE_API_KEYS = [GOOGLE_API_KEY_1, GOOGLE_API_KEY_2]
+
+LOGS_DIRECTORY = os.path.join(current_file_path, "logs")
+
+MONGODB_URI = os.getenv("MONGODB_URI")
+BAT_DATABASE = os.getenv("BAT_DATABASE")
+USER_COLLECTION = os.getenv("USER_COLLECTION")
+SITUATIONAL_REPORT_COLLECTION = os.getenv("SITUATIONAL_REPORT_COLLECTION")
+
+BAT_DATA = os.path.join(current_file_path, "data", "bat.json")
+
 INTRO_MESSAGE = """
 India has over 172 million children at risk of harm, despite strong child protection laws. 
 To tackle this, COF-KAWACH—a 10-year initiative by the British Asian Trust (BAT) and its partners—was launched in June 2022. 
