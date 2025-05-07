@@ -7,9 +7,9 @@ from config import BAT_DATA
 
 st.set_page_config(page_title = "Situational Reports", layout = "wide")
 
-if "authenticated" not in st.session_state or not st.session_state["authenticated"]:
-    st.error("Please log in first")
-    st.stop()
+# if "authenticated" not in st.session_state or not st.session_state["authenticated"]:
+#     st.error("Please log in first")
+#     st.stop()
 
 
 
