@@ -3,14 +3,14 @@ from pymongo.server_api import ServerApi
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from config import MONGODB_URI, SPF_DATABASE
+from config import MONGODB_URI, BAT_DATABASE
 
 class MongoDBHandler():
     def __init__(self, collection_name):
 
         self.client = MongoClient(MONGODB_URI, server_api=ServerApi('1'))
 
-        self.db = self.client[SPF_DATABASE]
+        self.db = self.client[BAT_DATABASE]
         self.collection = self.db[collection_name]
 
     def get_collection(self):
