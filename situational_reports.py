@@ -15,20 +15,20 @@ if "authenticated" not in st.session_state or not st.session_state["authenticate
 
 json_data = load_dict_from_json(BAT_DATA)
 
-select_pdf = st.selectbox("Select PDF", options = json_data.keys())
+select_pdf = st.selectbox("Select PDF", options = json_data.keys(), index = None)
 
 
 if select_pdf:
     existing_sitrep = check_sitrep_exists(pdf_name = select_pdf)
 
     if existing_sitrep:
-        sitrep = existing_sitrep["case_story"]
+        sitrep = existing_sitrep["situational_report"]
         st.success("Loading existing situational report from database")
         st.write(sitrep)
 
     else:
         text = json_data[select_pdf]
-        with st.spinner(f"Generating situational report for Partner: {select_pdf}..."):
+        with st.spinner(f"Generating situational report for: {select_pdf}..."):
             sitrep = generate_situational_report(text = text)
             if sitrep:
                 st.write(sitrep)
