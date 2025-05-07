@@ -3,8 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# EMBEDDING_MODEL = "text-embedding-3-small"
-# MODEL_NAME = "gpt-3.5-turbo"
+GEMINI_MODEL_NAME = "models/gemini-2.0-flash"
 EMBED_DIMENSION = 512
 CHUNK_SIZE = 1024
 CHUNK_OVERLAP = 50
