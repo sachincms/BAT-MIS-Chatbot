@@ -1,16 +1,9 @@
-from typing import List, Tuple
-from typing import List
 import os
-import pandas as pd
 import json
 from pypdf import PdfReader
 from datetime import datetime
-from dotenv import load_dotenv
 
-# Removed the old code
-# In the chat_app we will use the bat.json file rather than bat_pdf_text.txt file
 
-######################################## PDF to JSON #################################################
 def convert_pdf_into_json(folder_path: str) -> dict:
   '''
   This function converts all pdf data into text string with pdf name as key and text as values
@@ -35,8 +28,6 @@ def convert_pdf_into_json(folder_path: str) -> dict:
 
   return final_dict
 
-
-######################################## JSON processing #################################################
 
 def custom_serializer(obj):
     """
@@ -78,14 +69,3 @@ def load_dict_from_json(file_path: str) -> dict:
   with open(file_path, "r") as f:
     loaded_dict  = json.load(f)
   return loaded_dict
-
-
-
-
-
-
-
-
-
-
-
