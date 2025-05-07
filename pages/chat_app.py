@@ -1,55 +1,44 @@
-from config import BAT_LOGO_PATH, DEFAULT_QUERY, DEFAULT_FINAL_RESPONSE, INTRO_MESSAGE, INTRO_MARKDOWN, ERROR_MESSAGE
 import streamlit as st
 import sys
 import os
-from config import *
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-from utils.chat import qa_chat2, stream_data
-from utils.image_processing import display_images
-from utils.files_processing import load_string_from_textfile
 import warnings
 warnings.simplefilter("ignore", ResourceWarning)
 import asyncio
 import logging
 import uuid
+from datetime import datetime
 from streamlit.web.server.websocket_headers import _get_websocket_headers
 from traceloop.sdk import Traceloop
 import json
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+from utils.chat import qa_chat_with_prompt, stream_data
+from utils.image_processing import display_images
+from utils.files_processing import load_dict_from_json
+from config import BAT_DATA, DEFAULT_QUERY, DEFAULT_FINAL_RESPONSE, ERROR_MESSAGE, BAT_LOGO_PATH
+from logging_config import get_logger
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(name)s %(levelname)s %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+logger = get_logger(__name__)
 
 st.set_page_config(
-    page_title="KAWACH Chatbot",
+    page_title="BAT chatbot",
     page_icon=BAT_LOGO_PATH,
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-display_images()
-st.write(INTRO_MESSAGE)
-st.markdown(INTRO_MARKDOWN, unsafe_allow_html=True)
 
-try:
-    loop = asyncio.get_running_loop()
-    loop.close()
-except RuntimeError:
-    pass
+display_images()
 
 
 if "bat_data" not in st.session_state:
-    st.session_state["bat_data"] = None
+    bat_data = load_dict_from_json(BAT_DATA)
+    st.session_state["bat_data"] = bat_data
 
+    
 if "chat_history" not in st.session_state:
     st.session_state["chat_history"] = []
 
-if st.session_state["bat_data"] is None:
-    with st.spinner("Loading pdf data...."):
-        text = load_string_from_textfile(filepath = "data/bat_pdf_text.txt")
-        st.session_state["bat_data"] = text
+
 
 if "chat_container" not in st.session_state:
     st.session_state.chat_container = st.container()
@@ -89,9 +78,9 @@ for chat in st.session_state["chat_history"]:
     with st.chat_message(chat["role"]):
         st.write(chat["message"])
 
-if st.session_state["chat_history"][-1]["role"] != "assistant":
+if st.session_state["chat_history"][-1]["role"] != "assistant":  
     try:
-        response = qa_chat2(text = st.session_state["bat_data"], query = query)
+        response = qa_chat_with_prompt(text = st.session_state["bat_data"], query = query)
         answer = response["answer"]
         source = response["source"]
         full_response = f"\n{answer}\n\n**Source:** {source}"
