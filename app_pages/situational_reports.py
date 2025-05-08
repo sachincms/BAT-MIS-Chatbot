@@ -11,6 +11,8 @@ st.set_page_config(page_title = "Situational Reports", layout = "wide")
 
 json_data = load_dict_from_json(BAT_DATA)
 
+st.title("Situational Reports")
+
 select_pdf = st.selectbox("Select PDF", options = json_data.keys(), index = None)
 
 
