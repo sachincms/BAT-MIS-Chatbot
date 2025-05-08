@@ -19,8 +19,8 @@ if select_pdf:
 
     if existing_sitrep:
         sitrep = existing_sitrep["situational_report"]
-        st.success("Loading existing situational report from database")
-        st.write_stream(stream_data(sitrep))
+        with st.spinner(f"Generating situational report for: {select_pdf}..."):
+            st.write_stream(stream_data(sitrep))
 
     else:
         text = json_data[select_pdf]
